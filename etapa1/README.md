@@ -1,7 +1,72 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas
-- [ ] Tarefa 1
-- [ ] ...
-- [ ] Tarefa n
-  - [ ] Subtarefa n
+- [ ] Palavras Reservadas da Linguagem
+  - [ ] int
+  - [ ] float
+  - [ ] bool
+  - [ ] char
+  - [ ] string
+  - [ ] if
+  - [ ] then
+  - [ ] else
+  - [ ] while
+  - [ ] do
+  - [ ] input
+  - [ ] output
+  - [ ] return
+  - [ ] const
+  - [ ] static
+  - [ ] foreach
+  - [ ] for
+  - [ ] switch
+  - [ ] case
+  - [ ] break
+  - [ ] continue
+  - [ ] class
+  - [ ] private
+  - [ ] public
+  - [ ] protected
+  - [ ] end
+  - [ ] default
+- [ ] Caracteres Especiais
+  - [ ] ,
+  - [ ] ;
+  - [ ] :
+  - [ ] (
+  - [ ] )
+  - [ ] [
+  - [ ] ]
+  - [ ] {
+  - [ ] }
+  - [ ] +
+  - [ ] -
+  - [ ] |
+  - [ ] *
+  - [ ] /
+  - [ ] <
+  - [ ] >
+  - [ ] =
+  - [ ] !
+  - [ ] &
+  - [ ] %
+  - [ ] #
+  - [ ] ˆ
+  - [ ] .
+  - [ ] $
+- [ ] Operadores Compostos
+  - [ ] <=
+  - [ ] >=
+  - [ ] ==
+  - [ ] !=
+  - [ ] &&
+  - [ ] ||
+  - [ ] >>
+  - [ ] <<
+- [ ] Identificadores
+- [ ] Literais
+- [ ] Contagem de linhas (`get_line_number(void)`)
+- [ ] Ignorar comentários (`// && /* */`)
+- [ ] Lançar erros léxicos
+  - [ ] Não fechamento de `' && "`
+  - [ ] Uso de `''` para strings
