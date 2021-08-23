@@ -38,6 +38,8 @@ WHITESPACE    [\t\n\r ]
 "private" return TK_PR_PRIVATE;
 "public" return TK_PR_PUBLIC;
 "protected" return TK_PR_PROTECTED;
+"end" return TK_PR_END;
+"default" return TK_PR_DEFAULT;
 
 %%
 

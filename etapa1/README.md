@@ -1,34 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas
-- [ ] Palavras Reservadas da Linguagem
-  - [X] int
-  - [X] float
-  - [X] bool
-  - [X] char
-  - [X] string
-  - [X] if
-  - [X] then
-  - [X] else
-  - [X] while
-  - [X] do
-  - [X] input
-  - [X] output
-  - [X] return
-  - [X] const
-  - [X] static
-  - [X] foreach
-  - [X] for
-  - [X] switch
-  - [X] case
-  - [X] break
-  - [X] continue
-  - [X] class
-  - [X] private
-  - [X] public
-  - [X] protected
-  - [ ] end
-  - [ ] default
 - [ ] Caracteres Especiais
   - [ ] ,
   - [ ] ;
@@ -70,3 +42,33 @@
 - [ ] Lançar erros léxicos
   - [ ] Não fechamento de `' && "`
   - [ ] Uso de `''` para strings
+
+## Tarefas concluidas
+- [X] Palavras Reservadas da Linguagem
+  - [X] int
+  - [X] float
+  - [X] bool
+  - [X] char
+  - [X] string
+  - [X] if
+  - [X] then
+  - [X] else
+  - [X] while
+  - [X] do
+  - [X] input
+  - [X] output
+  - [X] return
+  - [X] const
+  - [X] static
+  - [X] foreach
+  - [X] for
+  - [X] switch
+  - [X] case
+  - [X] break
+  - [X] continue
+  - [X] class
+  - [X] private
+  - [X] public
+  - [X] protected
+  - [X] end
+  - [X] default
