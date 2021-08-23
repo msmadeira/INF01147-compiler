@@ -1,31 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas pendentes
-- [ ] Caracteres Especiais
-  - [X] ,
-  - [X] ;
-  - [X] :
-  - [X] (
-  - [X] )
-  - [X] [
-  - [X] ]
-  - [X] {
-  - [X] }
-  - [X] +
-  - [X] -
-  - [X] |
-  - [X] *
-  - [X] /
-  - [X] <
-  - [X] >
-  - [X] =
-  - [X] !
-  - [X] &
-  - [X] %
-  - [ ] #
-  - [ ] ˆ
-  - [ ] .
-  - [ ] $
 - [ ] Operadores Compostos
   - [ ] <=
   - [ ] >=
@@ -72,3 +47,28 @@
   - [X] protected
   - [X] end
   - [X] default
+- [X] Caracteres Especiais
+  - [X] ,
+  - [X] ;
+  - [X] :
+  - [X] (
+  - [X] )
+  - [X] [
+  - [X] ]
+  - [X] {
+  - [X] }
+  - [X] +
+  - [X] -
+  - [X] |
+  - [X] *
+  - [X] /
+  - [X] <
+  - [X] >
+  - [X] =
+  - [X] !
+  - [X] &
+  - [X] %
+  - [X] #
+  - [X] ˆ
+  - [X] .
+  - [X] $
