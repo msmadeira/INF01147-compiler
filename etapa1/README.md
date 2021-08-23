@@ -1,12 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas pendentes
-- [ ] Literais
-  - [X] int
-  - [ ] float
-  - [X] bool
-  - [X] char
-  - [X] string
 - [ ] Contagem de linhas (`get_line_number(void)`)
 - [ ] Ignorar comentários (`// && /* */`)
 - [ ] Lançar erros léxicos
@@ -80,3 +74,9 @@
   - [X] >>
   - [X] <<
 - [X] Identificadores
+- [X] Literais
+  - [X] int
+  - [X] float
+  - [X] bool
+  - [X] char
+  - [X] string

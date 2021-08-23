@@ -6,12 +6,13 @@
     int get_ascii(char);
 %}
 
-WHITESPACE  [ \t]+
-NUMBER   [0-9]
+WHITESPACE    [ \t]+
+NUMBER    [0-9]
 ALPHABETICAL    [A-Za-z_]
 INTEGER    [+-]?{NUMBER}+
-CHAR   '.'
-STRING   \".*\"
+FLOAT    {INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
+CHAR    '.'
+STRING    \".*\"
 
 %%
 
@@ -88,11 +89,11 @@ STRING   \".*\"
 
     /* Literals */
 {INTEGER} return TK_LIT_INT;
+{FLOAT} return TK_LIT_FLOAT;
 "false" return TK_LIT_FALSE;
 "true" return TK_LIT_TRUE;
 {CHAR} return TK_LIT_CHAR;
 {STRING} return TK_LIT_STRING;
-    /* TODO: TK_LIT_FLOAT */
 
 %%
 
