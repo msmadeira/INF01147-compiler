@@ -1,12 +1,12 @@
 # Etapa 1 - Interpretador Léxico
 
-## Tarefas
+## Tarefas pendentes
 - [ ] Caracteres Especiais
-  - [ ] ,
-  - [ ] ;
-  - [ ] :
-  - [ ] (
-  - [ ] )
+  - [X] ,
+  - [X] ;
+  - [X] :
+  - [X] (
+  - [X] )
   - [ ] [
   - [ ] ]
   - [ ] {

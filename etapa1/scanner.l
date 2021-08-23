@@ -3,6 +3,7 @@
     #include <stdio.h>
     #include "tokens.h"
     int get_line_number(void);
+    int get_ascii(char);
 %}
 
 WHITESPACE    [\t\n\r ]
@@ -41,8 +42,20 @@ WHITESPACE    [\t\n\r ]
 "end" return TK_PR_END;
 "default" return TK_PR_DEFAULT;
 
+    /* special characters */
+"," { return get_ascii(','); };
+";" { return get_ascii(';'); };
+":" { return get_ascii(':'); };
+"(" { return get_ascii('('); };
+")" { return get_ascii(')'); };
+
 %%
 
 int get_line_number () {
     return 1;
+}
+
+int get_ascii(char c) {
+    int code = c;
+    return code;
 }
