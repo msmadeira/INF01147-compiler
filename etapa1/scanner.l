@@ -10,6 +10,7 @@ WHITESPACE  [ \t]+
 NUMBER   [0-9]
 ALPHABETICAL    [A-Za-z_]
 INTEGER    [+-]?{NUMBER}+
+CHAR   '.'
 
 %%
 
@@ -86,6 +87,10 @@ INTEGER    [+-]?{NUMBER}+
 
     /* Literals */
 {INTEGER} return TK_LIT_INT;
+"false" return TK_LIT_FALSE;
+"true" return TK_LIT_TRUE;
+{CHAR} return TK_LIT_CHAR;
+    /* TODO: TK_LIT_FLOAT, TK_LIT_STRING */
 
 %%
 

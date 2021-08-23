@@ -4,8 +4,8 @@
 - [ ] Literais
   - [X] int
   - [ ] float
-  - [ ] bool
-  - [ ] char
+  - [X] bool
+  - [X] char
   - [ ] string
 - [ ] Contagem de linhas (`get_line_number(void)`)
 - [ ] Ignorar comentários (`// && /* */`)
