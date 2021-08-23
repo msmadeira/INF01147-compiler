@@ -53,6 +53,11 @@ WHITESPACE    [\t\n\r ]
 "{" { return get_ascii('{'); };
 "}" { return get_ascii('}'); };
 "+" { return get_ascii('+'); };
+"-" { return get_ascii('-'); };
+"|" { return get_ascii('|'); };
+"*" { return get_ascii('*'); };
+"/" { return get_ascii('/'); };
+"<" { return get_ascii('<'); };
 
 %%
 
