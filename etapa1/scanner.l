@@ -6,7 +6,9 @@
     int get_ascii(char);
 %}
 
-WHITESPACE    [\t\n\r ]
+WHITESPACE  [ \t]+
+NUMBER   [0-9]
+ALPHABETICAL    [A-Za-z_]
 
 %%
 
@@ -77,6 +79,9 @@ WHITESPACE    [\t\n\r ]
 "||" return TK_OC_OR;
 ">>" return TK_OC_SL;
 "<<" return TK_OC_SR;
+
+    /* Identifiers */
+{ALPHABETICAL}{NUMBER}* return TK_IDENTIFICADOR;
 
 %%
 

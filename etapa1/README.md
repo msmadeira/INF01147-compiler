@@ -1,7 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas pendentes
-- [ ] Identificadores
 - [ ] Literais
 - [ ] Contagem de linhas (`get_line_number(void)`)
 - [ ] Ignorar comentários (`// && /* */`)
@@ -73,3 +72,4 @@
   - [X] ||
   - [X] >>
   - [X] <<
+- [X] Identificadores
