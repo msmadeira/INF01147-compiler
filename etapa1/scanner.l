@@ -1,12 +1,26 @@
 
 %{
     #include <stdio.h>
-    int minha_var_global = 0;
+    #include "tokens.h"
     int get_line_number(void);
 %}
+
+WHITESPACE    [\t\n\r ]
+
 %%
-"lexico" { get_line_number(); }
+
+    /* ignores */
+{WHITESPACE} {}
+
+    /* reserved words */
+"int" return TK_PR_INT;
+"float" return TK_PR_FLOAT;
+"bool" return TK_PR_BOOL;
+"char" return TK_PR_CHAR;
+"string" return TK_PR_STRING;
+
 %%
+
 int get_line_number () {
     return 1;
 }
