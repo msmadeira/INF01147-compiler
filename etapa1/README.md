@@ -2,11 +2,11 @@
 
 ## Tarefas
 - [ ] Palavras Reservadas da Linguagem
-  - [ ] int
-  - [ ] float
-  - [ ] bool
-  - [ ] char
-  - [ ] string
+  - [X] int
+  - [X] float
+  - [X] bool
+  - [X] char
+  - [X] string
   - [ ] if
   - [ ] then
   - [ ] else
