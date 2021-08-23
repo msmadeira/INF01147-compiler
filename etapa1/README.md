@@ -1,15 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas pendentes
-- [ ] Operadores Compostos
-  - [ ] <=
-  - [ ] >=
-  - [ ] ==
-  - [ ] !=
-  - [ ] &&
-  - [ ] ||
-  - [ ] >>
-  - [ ] <<
 - [ ] Identificadores
 - [ ] Literais
 - [ ] Contagem de linhas (`get_line_number(void)`)
@@ -17,6 +8,7 @@
 - [ ] Lançar erros léxicos
   - [ ] Não fechamento de `' && "`
   - [ ] Uso de `''` para strings
+- [ ] REVISÃO
 
 ## Tarefas concluidas
 - [X] Palavras Reservadas da Linguagem
@@ -72,3 +64,12 @@
   - [X] ^
   - [X] .
   - [X] $
+- [X] Operadores Compostos
+  - [X] <=
+  - [X] >=
+  - [X] ==
+  - [X] !=
+  - [X] &&
+  - [X] ||
+  - [X] >>
+  - [X] <<
