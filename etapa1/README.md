@@ -17,11 +17,11 @@
   - [X] return
   - [X] const
   - [X] static
-  - [ ] foreach
-  - [ ] for
-  - [ ] switch
-  - [ ] case
-  - [ ] break
+  - [X] foreach
+  - [X] for
+  - [X] switch
+  - [X] case
+  - [X] break
   - [ ] continue
   - [ ] class
   - [ ] private

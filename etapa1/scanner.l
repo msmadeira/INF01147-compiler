@@ -28,6 +28,11 @@ WHITESPACE    [\t\n\r ]
 "return" return TK_PR_RETURN;
 "const" return TK_PR_CONST;
 "static" return TK_PR_STATIC;
+"foreach" return TK_PR_FOREACH;
+"for" return TK_PR_FOR;
+"switch" return TK_PR_SWITCH;
+"case" return TK_PR_CASE;
+"break" return TK_PR_BREAK;
 
 %%
 
