@@ -33,6 +33,11 @@ WHITESPACE    [\t\n\r ]
 "switch" return TK_PR_SWITCH;
 "case" return TK_PR_CASE;
 "break" return TK_PR_BREAK;
+"continue" return TK_PR_CONTINUE;
+"class" return TK_PR_CLASS;
+"private" return TK_PR_PRIVATE;
+"public" return TK_PR_PUBLIC;
+"protected" return TK_PR_PROTECTED;
 
 %%
 

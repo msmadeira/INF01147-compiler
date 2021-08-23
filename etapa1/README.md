@@ -22,11 +22,11 @@
   - [X] switch
   - [X] case
   - [X] break
-  - [ ] continue
-  - [ ] class
-  - [ ] private
-  - [ ] public
-  - [ ] protected
+  - [X] continue
+  - [X] class
+  - [X] private
+  - [X] public
+  - [X] protected
   - [ ] end
   - [ ] default
 - [ ] Caracteres Especiais
