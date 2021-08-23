@@ -9,6 +9,7 @@
 WHITESPACE  [ \t]+
 NUMBER   [0-9]
 ALPHABETICAL    [A-Za-z_]
+INTEGER    [+-]?{NUMBER}+
 
 %%
 
@@ -70,7 +71,7 @@ ALPHABETICAL    [A-Za-z_]
 "." { return get_ascii('.'); };
 "$" { return get_ascii('$'); };
 
-    /* Operadores compostos */
+    /* Compound operators */
 "<=" return TK_OC_LE;
 ">=" return TK_OC_GE;
 "==" return TK_OC_EQ;
@@ -82,6 +83,9 @@ ALPHABETICAL    [A-Za-z_]
 
     /* Identifiers */
 {ALPHABETICAL}{NUMBER}* return TK_IDENTIFICADOR;
+
+    /* Literals */
+{INTEGER} return TK_LIT_INT;
 
 %%
 

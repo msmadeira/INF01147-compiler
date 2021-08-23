@@ -2,6 +2,11 @@
 
 ## Tarefas pendentes
 - [ ] Literais
+  - [X] int
+  - [ ] float
+  - [ ] bool
+  - [ ] char
+  - [ ] string
 - [ ] Contagem de linhas (`get_line_number(void)`)
 - [ ] Ignorar comentários (`// && /* */`)
 - [ ] Lançar erros léxicos
