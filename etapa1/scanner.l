@@ -2,6 +2,7 @@
 %{
     #include <stdio.h>
     #include "tokens.h"
+    int line_number = 1;
     int get_line_number(void);
     int get_ascii(char);
 %}
@@ -15,6 +16,9 @@ CHAR    '.'
 STRING    \".*\"
 
 %%
+    /* line counting */
+\n ++line_number;
+
 
     /* ignores */
 {WHITESPACE} {}
@@ -98,7 +102,7 @@ STRING    \".*\"
 %%
 
 int get_line_number () {
-    return 1;
+    return line_number;
 }
 
 int get_ascii(char c) {

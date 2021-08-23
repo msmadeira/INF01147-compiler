@@ -1,7 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas pendentes
-- [ ] Contagem de linhas (`get_line_number(void)`)
 - [ ] Ignorar comentários (`// && /* */`)
 - [ ] Lançar erros léxicos
   - [ ] Não fechamento de `' && "`
@@ -80,3 +79,4 @@
   - [X] bool
   - [X] char
   - [X] string
+- [X] Contagem de linhas (`get_line_number(void)`)
