@@ -10,11 +10,12 @@
 WHITESPACE    [ \t]+
 NUMBER    [0-9]
 ALPHABETICAL    [A-Za-z_]
+ALPHANUMERIC    {NUMBER}|{ALPHABETICAL}
 INTEGER    [+-]?{NUMBER}+
 FLOAT    {INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
 CHAR    '.'
 STRING    \".*\"
-SINGLE_LINE_COMMENT     "//".*
+SINGLE_LINE_COMMENT    "//".*
 
 %%
     /* line counting */
@@ -90,14 +91,16 @@ SINGLE_LINE_COMMENT     "//".*
 ">>" return TK_OC_SL;
 "<<" return TK_OC_SR;
 
+    /* boolean Literals */
+"false" return TK_LIT_FALSE;
+"true" return TK_LIT_TRUE;
+
     /* Identifiers */
-{ALPHABETICAL}{NUMBER}* return TK_IDENTIFICADOR;
+{ALPHABETICAL}{ALPHANUMERIC}* return TK_IDENTIFICADOR;
 
     /* Literals */
 {INTEGER} return TK_LIT_INT;
 {FLOAT} return TK_LIT_FLOAT;
-"false" return TK_LIT_FALSE;
-"true" return TK_LIT_TRUE;
 {CHAR} return TK_LIT_CHAR;
 {STRING} return TK_LIT_STRING;
 
