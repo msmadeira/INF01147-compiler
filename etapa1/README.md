@@ -6,13 +6,15 @@
   - [ ] float
   - [X] bool
   - [X] char
-  - [ ] string
+  - [X] string
 - [ ] Contagem de linhas (`get_line_number(void)`)
 - [ ] Ignorar comentários (`// && /* */`)
 - [ ] Lançar erros léxicos
   - [ ] Não fechamento de `' && "`
   - [ ] Uso de `''` para strings
+- [ ] make clean
 - [ ] REVISÃO
+  - [ ] Pode string vazia?
 
 ## Tarefas concluidas
 - [X] Palavras Reservadas da Linguagem

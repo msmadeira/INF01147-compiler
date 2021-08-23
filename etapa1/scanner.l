@@ -11,6 +11,7 @@ NUMBER   [0-9]
 ALPHABETICAL    [A-Za-z_]
 INTEGER    [+-]?{NUMBER}+
 CHAR   '.'
+STRING   \".*\"
 
 %%
 
@@ -90,7 +91,8 @@ CHAR   '.'
 "false" return TK_LIT_FALSE;
 "true" return TK_LIT_TRUE;
 {CHAR} return TK_LIT_CHAR;
-    /* TODO: TK_LIT_FLOAT, TK_LIT_STRING */
+{STRING} return TK_LIT_STRING;
+    /* TODO: TK_LIT_FLOAT */
 
 %%
 
