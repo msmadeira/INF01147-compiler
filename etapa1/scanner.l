@@ -11,7 +11,7 @@ WHITESPACE    [ \t]+
 NUMBER    [0-9]
 ALPHABETICAL    [A-Za-z_]
 INTEGER    [+-]?{NUMBER}+
-FLOAT    {INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
+FLOAT    [+-]?{INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
 CHAR    '.'
 STRING    \".*\"
 
