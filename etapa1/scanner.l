@@ -11,9 +11,10 @@ WHITESPACE    [ \t]+
 NUMBER    [0-9]
 ALPHABETICAL    [A-Za-z_]
 INTEGER    [+-]?{NUMBER}+
-FLOAT    [+-]?{INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
+FLOAT    {INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
 CHAR    '.'
 STRING    \".*\"
+SINGLE_LINE_COMMENT     "//".*
 
 %%
     /* line counting */
@@ -22,6 +23,7 @@ STRING    \".*\"
 
     /* ignores */
 {WHITESPACE} {}
+{SINGLE_LINE_COMMENT} {}
 
     /* reserved words */
 "int" return TK_PR_INT;
