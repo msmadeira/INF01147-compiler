@@ -7,16 +7,16 @@
   - [X] bool
   - [X] char
   - [X] string
-  - [ ] if
-  - [ ] then
-  - [ ] else
-  - [ ] while
-  - [ ] do
-  - [ ] input
-  - [ ] output
-  - [ ] return
-  - [ ] const
-  - [ ] static
+  - [X] if
+  - [X] then
+  - [X] else
+  - [X] while
+  - [X] do
+  - [X] input
+  - [X] output
+  - [X] return
+  - [X] const
+  - [X] static
   - [ ] foreach
   - [ ] for
   - [ ] switch
