@@ -4,7 +4,7 @@
 - [ ] Lançar erros léxicos
   - [ ] Não fechamento de `' && "`
   - [ ] Uso de `''` para strings
-- [ ] make clean
+  - [ ] `"Sobre a questão dos erros léxicos, podem ser considerados erros léxicos as situações não capturadas pelo que está especificado."` - Schnorr
 - [ ] REVISÃO
   - [ ] Pode string vazia?
 
@@ -80,3 +80,4 @@
   - [X] string
 - [X] Contagem de linhas (`get_line_number(void)`)
 - [X] Ignorar comentários (`// && /* */`)
+- [X] make clean
