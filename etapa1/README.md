@@ -1,7 +1,6 @@
 # Etapa 1 - Interpretador Léxico
 
 ## Tarefas pendentes
-- [ ] Ignorar comentários (`// && /* */`)
 - [ ] Lançar erros léxicos
   - [ ] Não fechamento de `' && "`
   - [ ] Uso de `''` para strings
@@ -80,3 +79,4 @@
   - [X] char
   - [X] string
 - [X] Contagem de linhas (`get_line_number(void)`)
+- [X] Ignorar comentários (`// && /* */`)
