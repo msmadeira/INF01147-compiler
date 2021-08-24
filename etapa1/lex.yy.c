@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 75
-#define YY_END_OF_BUFFER 76
+#define YY_NUM_RULES 76
+#define YY_END_OF_BUFFER 77
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,16 +362,16 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[190] =
     {   0,
-        0,    0,    0,    0,   76,   75,    3,    1,   49,   75,
-       52,   55,   51,   50,   75,   35,   36,   44,   41,   32,
+        0,    0,    0,    0,   77,   71,    3,    1,   49,   71,
+       52,   55,   51,   50,   71,   35,   36,   44,   41,   32,
        42,   54,   45,   67,   34,   33,   46,   48,   47,   66,
        37,   38,   53,   66,   66,   66,   66,   66,   66,   66,
-       66,   66,   66,   66,   66,   39,   43,   40,   72,   74,
-       73,    3,   59,    0,   70,   60,    0,   67,    2,    4,
+       66,   66,   66,   66,   66,   39,   43,   40,   73,   75,
+       74,    3,   59,    0,   70,   60,    0,   67,    2,    4,
         0,    0,   63,   56,   58,   57,   62,   66,   66,   66,
        66,   66,   66,   66,   66,   14,   66,   66,   66,   66,
        66,   10,   66,   66,   66,   66,   66,   66,   66,   66,
-       66,   66,   61,   72,   71,   69,    4,    0,   68,    0,
+       66,   66,   61,   73,   72,   69,    4,    0,   68,    0,
 
        68,   66,   66,   66,   66,   66,   66,   66,   66,   30,
        66,   66,   21,   66,    5,   66,   66,   66,   66,   66,
@@ -1207,17 +1207,17 @@ YY_RULE_SETUP
 #line 106 "scanner.l"
 return TK_LIT_STRING;
 	YY_BREAK
-
-
 case 71:
 YY_RULE_SETUP
-#line 110 "scanner.l"
-BEGIN(INITIAL);
+#line 107 "scanner.l"
+{ return TOKEN_ERRO; }
 	YY_BREAK
+
+
 case 72:
 YY_RULE_SETUP
 #line 111 "scanner.l"
-{}
+BEGIN(INITIAL);
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
@@ -1225,18 +1225,23 @@ YY_RULE_SETUP
 {}
 	YY_BREAK
 case 74:
-/* rule 74 can match eol */
 YY_RULE_SETUP
 #line 113 "scanner.l"
+{}
+	YY_BREAK
+case 75:
+/* rule 75 can match eol */
+YY_RULE_SETUP
+#line 114 "scanner.l"
 ++line_number;
 	YY_BREAK
 
-case 75:
+case 76:
 YY_RULE_SETUP
-#line 116 "scanner.l"
+#line 117 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 1240 "lex.yy.c"
+#line 1245 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(IN_COMMENT):
 	yyterminate();
@@ -2242,7 +2247,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 116 "scanner.l"
+#line 117 "scanner.l"
 
 
 int get_line_number () {

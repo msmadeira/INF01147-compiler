@@ -104,6 +104,7 @@ SINGLE_LINE_COMMENT    "//".*
     {FLOAT} return TK_LIT_FLOAT;
     {CHAR} return TK_LIT_CHAR;
     {STRING} return TK_LIT_STRING;
+    . { return TOKEN_ERRO; }
 }
 
 <IN_COMMENT>{
