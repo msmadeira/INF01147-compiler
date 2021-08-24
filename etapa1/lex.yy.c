@@ -1210,7 +1210,7 @@ return TK_LIT_STRING;
 case 71:
 YY_RULE_SETUP
 #line 107 "scanner.l"
-{ return TOKEN_ERRO; }
+return TOKEN_ERRO;
 	YY_BREAK
 
 
