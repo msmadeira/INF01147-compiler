@@ -48,10 +48,13 @@ int yyerror (char const *s);
 %token TK_LIT_STRING
 %token TK_IDENTIFICADOR
 %token TOKEN_ERRO
+%start programa
 
 %%
 
-type : TK_PR_INT { printf("Sucesso guys"); };
+programa : funcao | declaracao | /* vazio */;
+funcao : programa TK_PR_INT { printf("TODO int definido como placeholder"); };
+declaracao : programa TK_PR_FLOAT { printf("TODO float definido como placeholder"); };
 
 %%
 
