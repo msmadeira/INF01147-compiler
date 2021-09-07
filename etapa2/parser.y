@@ -93,7 +93,8 @@ bloco_comandos_opcoes : declaracao_local
     | entrada
     | atribuicao
     | saida
-    | chamada_funcao;
+    | chamada_funcao
+    | operacao_shift;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -109,14 +110,18 @@ declaracao_local_inicializacao : TK_OC_LE valor | /* vazio */;
 entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
 saida: TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
 
-atribuicao : TK_IDENTIFICADOR atribuicao_vetor TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
-atribuicao_vetor : TK_ESPECIAL_OPBRACKETS expressao TK_ESPECIAL_CLBRACKETS | /* vazio */;
+atribuicao : TK_IDENTIFICADOR vetor_expressao TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
+
+operacao_shift : TK_IDENTIFICADOR vetor_expressao operadores_shift inteiro TK_ESPECIAL_SEMICOLON;
+operadores_shift : TK_OC_SL | TK_OC_SR;
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
 tipo : TK_PR_INT | TK_PR_FLOAT | TK_PR_CHAR | TK_PR_BOOL | TK_PR_STRING;
 literal : TK_LIT_POSINT | TK_LIT_NEGINT | TK_LIT_FLOAT | TK_LIT_FALSE | TK_LIT_TRUE | TK_LIT_CHAR | TK_LIT_STRING;
 vetor : TK_ESPECIAL_OPBRACKETS TK_LIT_POSINT TK_ESPECIAL_CLBRACKETS | /* vazio */;
+vetor_expressao : TK_ESPECIAL_OPBRACKETS expressao TK_ESPECIAL_CLBRACKETS | /* vazio */;
+inteiro : TK_LIT_POSINT | TK_LIT_NEGINT;
 
 valor : TK_IDENTIFICADOR | literal;
 
