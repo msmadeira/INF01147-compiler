@@ -114,7 +114,7 @@ expressao : TK_IDENTIFICADOR
 
 lista_parametros : parametro parametros_fim | /* vazio */;
 parametros_fim : TK_ESPECIAL_COMMA parametro parametros_fim | /* vazio */;
-parametro : TK_IDENTIFIER TK_ESPECIAL_COLON tipo | TK_IDENTIFIER | literal;
+parametro : TK_IDENTIFICADOR TK_ESPECIAL_COLON tipo | TK_IDENTIFICADOR | literal;
 %%
 
 int yyerror(char const *s) {
