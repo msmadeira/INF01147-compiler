@@ -98,7 +98,9 @@ bloco_comandos_opcoes : declaracao_local
     | retorno
     | operacao_break
     | operacao_continue
-    | condicional_if;
+    | condicional_if
+    | iterativa_for
+    | iterativa_while;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -114,7 +116,8 @@ declaracao_local_inicializacao : TK_OC_LE valor | /* vazio */;
 entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
 saida : TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
 
-atribuicao : TK_IDENTIFICADOR vetor_expressao TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
+atribuicao : atribuicao_corpo TK_ESPECIAL_SEMICOLON;
+atribuicao_corpo : TK_IDENTIFICADOR vetor_expressao TK_ESPECIAL_EQUALS expressao; 
 
 operacao_shift : TK_IDENTIFICADOR vetor_expressao operadores_shift inteiro TK_ESPECIAL_SEMICOLON;
 operadores_shift : TK_OC_SL | TK_OC_SR;
@@ -125,6 +128,11 @@ operacao_continue : TK_PR_CONTINUE TK_ESPECIAL_SEMICOLON;
 
 condicional_if : TK_PR_IF TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR bloco_comandos_estrutura condional_else TK_ESPECIAL_SEMICOLON;
 condional_else : TK_PR_ELSE bloco_comandos_estrutura | /* vazio */;
+
+iterativa_for : TK_PR_FOR TK_ESPECIAL_OPPAR iterativa_for_cabecalho TK_ESPECIAL_CLPAR bloco_comandos_estrutura TK_ESPECIAL_SEMICOLON;
+iterativa_for_cabecalho : atribuicao_corpo TK_ESPECIAL_COLON expressao TK_ESPECIAL_COLON atribuicao_corpo;
+
+iterativa_while : TK_PR_WHILE TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR TK_PR_DO bloco_comandos_estrutura TK_ESPECIAL_SEMICOLON;
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
@@ -172,10 +180,6 @@ expressao_unaria : TK_ESPECIAL_EXCLAMATION expressao
     | TK_ESPECIAL_MULT TK_IDENTIFICADOR
     | TK_ESPECIAL_HASH TK_IDENTIFICADOR;
 expressao_ternaria : expressao TK_ESPECIAL_INTERROGATION expressao TK_ESPECIAL_COLON expressao;
-
-lista_parametros : parametro parametros_fim | /* vazio */;
-parametros_fim : TK_ESPECIAL_COMMA parametro parametros_fim | /* vazio */;
-parametro : TK_IDENTIFICADOR TK_ESPECIAL_COLON tipo | TK_IDENTIFICADOR | literal;
 %%
 
 int yyerror(char const *s) {
