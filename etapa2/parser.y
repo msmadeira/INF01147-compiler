@@ -85,7 +85,7 @@ funcao_parametros : funcao_parametro
     | /* vazio */;
 funcao_parametro : const_opcional tipo TK_IDENTIFICADOR;
 
-bloco_comandos : TK_ESPECIAL_OPCURLY bloco_comandos_corpo TK_ESPECIAL_CLCURLY TK_ESPECIAL_SEMICOLON;
+bloco_comandos : bloco_comandos_estrutura TK_ESPECIAL_SEMICOLON;
 bloco_comandos_estrutura : TK_ESPECIAL_OPCURLY bloco_comandos_corpo TK_ESPECIAL_CLCURLY;
 bloco_comandos_corpo : bloco_comandos_corpo bloco_comandos_opcoes | /* vazio */;
 bloco_comandos_opcoes : declaracao_local
@@ -97,7 +97,8 @@ bloco_comandos_opcoes : declaracao_local
     | operacao_shift
     | retorno
     | operacao_break
-    | operacao_continue;
+    | operacao_continue
+    | condicional_if;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -121,6 +122,9 @@ operadores_shift : TK_OC_SL | TK_OC_SR;
 retorno : TK_PR_RETURN expressao TK_ESPECIAL_SEMICOLON;
 operacao_break : TK_PR_BREAK TK_ESPECIAL_SEMICOLON;
 operacao_continue : TK_PR_CONTINUE TK_ESPECIAL_SEMICOLON;
+
+condicional_if : TK_PR_IF TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR bloco_comandos_estrutura condional_else TK_ESPECIAL_SEMICOLON;
+condional_else : TK_PR_ELSE bloco_comandos_estrutura | /* vazio */;
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
