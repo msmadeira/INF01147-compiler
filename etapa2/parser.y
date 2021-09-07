@@ -94,7 +94,10 @@ bloco_comandos_opcoes : declaracao_local
     | atribuicao
     | saida
     | chamada_funcao
-    | operacao_shift;
+    | operacao_shift
+    | retorno
+    | operacao_break
+    | operacao_continue;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -108,12 +111,16 @@ declaracao_local_variavel : TK_IDENTIFICADOR declaracao_local_inicializacao;
 declaracao_local_inicializacao : TK_OC_LE valor | /* vazio */;
 
 entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
-saida: TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
+saida : TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
 
 atribuicao : TK_IDENTIFICADOR vetor_expressao TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
 
 operacao_shift : TK_IDENTIFICADOR vetor_expressao operadores_shift inteiro TK_ESPECIAL_SEMICOLON;
 operadores_shift : TK_OC_SL | TK_OC_SR;
+
+retorno : TK_PR_RETURN expressao TK_ESPECIAL_SEMICOLON;
+operacao_break : TK_PR_BREAK TK_ESPECIAL_SEMICOLON;
+operacao_continue : TK_PR_CONTINUE TK_ESPECIAL_SEMICOLON;
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
