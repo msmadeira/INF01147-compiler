@@ -52,6 +52,8 @@ int yyerror (char const *s);
 %token TK_ESPECIAL_CLPAR;
 %token TK_ESPECIAL_OPBRACKETS
 %token TK_ESPECIAL_CLBRACKETS
+%token TK_ESPECIAL_OPCURLY
+%token TK_ESPECIAL_CLCURLY
 %token TK_ESPECIAL_COMMA
 %token TK_ESPECIAL_SEMICOLON
 %token TK_ESPECIAL_COLON;
@@ -68,7 +70,16 @@ int yyerror (char const *s);
 %%
 
 programa : funcao | declaracao_global | /* vazio */;
-funcao : programa "funcao" { printf("funcao \n"); };
+
+funcao : programa funcao_cabecalho funcao_corpo { printf("funcao \n"); };
+funcao_cabecalho : static_opcional tipo TK_IDENTIFICADOR TK_ESPECIAL_OPPAR funcao_parametros TK_ESPECIAL_CLPAR;
+funcao_corpo : TK_ESPECIAL_OPCURLY bloco_comandos TK_ESPECIAL_CLCURLY;
+funcao_parametros : funcao_parametro 
+    | funcao_parametro TK_ESPECIAL_COMMA funcao_parametros 
+    | /* vazio */;
+funcao_parametro : const_opcional tipo TK_IDENTIFICADOR;
+
+bloco_comandos : declaracao_local | /* vazio */;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -103,12 +114,12 @@ expressao : TK_IDENTIFICADOR
     | expressao TK_ESPECIAL_LTHAN expressao
     | expressao TK_ESPECIAL_GTHAN expressao 
     | TK_ESPECIAL_EXCLAMATION TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR
-    | expressao OPERATOR_LE expressao
-    | expressao OPERATOR_GE expressao 
-    | expressao OPERATOR_EQ expressao
-    | expressao OPERATOR_NE expressao
-    | expressao OPERATOR_AND expressao
-    | expressao OPERATOR_OR expressao
+    | expressao TK_OC_LE expressao
+    | expressao TK_OC_GE expressao 
+    | expressao TK_OC_EQ expressao
+    | expressao TK_OC_NE expressao
+    | expressao TK_OC_AND expressao
+    | expressao TK_OC_OR expressao
     | TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR
 ;
 

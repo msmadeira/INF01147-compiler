@@ -66,8 +66,8 @@ SINGLE_LINE_COMMENT    "//".*
     ")" return TK_ESPECIAL_CLPAR;
     "[" return TK_ESPECIAL_OPBRACKETS;
     "]" return TK_ESPECIAL_CLBRACKETS;
-    "{" { return get_ascii('{'); };
-    "}" { return get_ascii('}'); };
+    "{" return TK_ESPECIAL_OPCURLY;
+    "}" return TK_ESPECIAL_CLCURLY;
     "!" return TK_ESPECIAL_EXCLAMATION;
     "+" return TK_ESPECIAL_ADD;
     "-" return TK_ESPECIAL_SUB;
