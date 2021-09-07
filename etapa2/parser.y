@@ -40,15 +40,18 @@ int yyerror (char const *s);
 %token TK_OC_OR
 %token TK_OC_SL
 %token TK_OC_SR
-%token TK_LIT_INT
+%token TK_LIT_POSINT
+%token TK_LIT_NEGINT
 %token TK_LIT_FLOAT
 %token TK_LIT_FALSE
 %token TK_LIT_TRUE
 %token TK_LIT_CHAR
 %token TK_LIT_STRING
 %token TK_IDENTIFICADOR
-%token TK_ESPECIAL_SEMICOLON
+%token TK_ESPECIAL_CLBRACKETS
+%token TK_ESPECIAL_OPBRACKETS
 %token TK_ESPECIAL_COMMA
+%token TK_ESPECIAL_SEMICOLON
 %token TOKEN_ERRO
 %start programa
 
@@ -57,12 +60,23 @@ int yyerror (char const *s);
 programa : funcao | declaracao_global | /* vazio */;
 funcao : programa "funcao" { printf("funcao \n"); };
 
-declaracao_global : programa static_opcional tipo nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
-nomes : TK_IDENTIFICADOR sequencia_nomes;
-sequencia_nomes : TK_ESPECIAL_COMMA TK_IDENTIFICADOR sequencia_nomes | /* vazio */;
+declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
+declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
+declaracao_global_sequencia_nomes : TK_ESPECIAL_COMMA declaracao_global_nome_variavel declaracao_global_sequencia_nomes | /* vazio */;
+declaracao_global_nome_variavel : TK_IDENTIFICADOR vetor;
 
+declaracao_local : static_opcional const_opcional tipo declaracao_local_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_local \n"); };
+declaracao_local_nomes : declaracao_local_variavel declaracao_local_sequencia_nomes;
+declaracao_local_sequencia_nomes : TK_ESPECIAL_COMMA declaracao_local_variavel declaracao_local_sequencia_nomes | /* vazio */;
+declaracao_local_variavel : TK_IDENTIFICADOR declaracao_local_inicializacao;
+declaracao_local_inicializacao : TK_OC_LE declaracao_local_valor | /* vazio */;
+declaracao_local_valor : TK_IDENTIFICADOR | literal;
+
+const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
-tipo : TK_PR_INT | TK_PR_FLOAT | TK_PR_CHAR | TK_PR_BOOL | TK_PR_STRING { printf("tipo \n"); };
+tipo : TK_PR_INT | TK_PR_FLOAT | TK_PR_CHAR | TK_PR_BOOL | TK_PR_STRING;
+literal : TK_LIT_POSINT | TK_LIT_NEGINT | TK_LIT_FLOAT | TK_LIT_FALSE | TK_LIT_TRUE | TK_LIT_CHAR | TK_LIT_STRING;
+vetor : TK_ESPECIAL_OPBRACKETS TK_LIT_POSINT TK_ESPECIAL_CLBRACKETS | /* vazio */;
 
 %%
 

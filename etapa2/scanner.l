@@ -11,6 +11,8 @@ WHITESPACE    [ \t]+
 NUMBER    [0-9]
 ALPHABETICAL    [A-Za-z_]
 ALPHANUMERIC    {NUMBER}|{ALPHABETICAL}
+POSINTEGER    [+]?{NUMBER}+
+NEGINTEGER    "-"{NUMBER}+
 INTEGER    [+-]?{NUMBER}+
 FLOAT    {INTEGER}("."{INTEGER}+)?([eE][+-]?{INTEGER}+)?
 CHAR    '.'
@@ -62,8 +64,8 @@ SINGLE_LINE_COMMENT    "//".*
     ":" { return get_ascii(':'); };
     "(" { return get_ascii('('); };
     ")" { return get_ascii(')'); };
-    "[" { return get_ascii('['); };
-    "]" { return get_ascii(']'); };
+    "[" return TK_ESPECIAL_OPBRACKETS;
+    "]" return TK_ESPECIAL_CLBRACKETS;
     "{" { return get_ascii('{'); };
     "}" { return get_ascii('}'); };
     "+" { return get_ascii('+'); };
@@ -100,7 +102,8 @@ SINGLE_LINE_COMMENT    "//".*
     {ALPHABETICAL}{ALPHANUMERIC}* return TK_IDENTIFICADOR;
 
         /* Literals */
-    {INTEGER} return TK_LIT_INT;
+    {POSINTEGER} return TK_LIT_POSINT;
+    {NEGINTEGER} return TK_LIT_NEGINT;
     {FLOAT} return TK_LIT_FLOAT;
     {CHAR} return TK_LIT_CHAR;
     {STRING} return TK_LIT_STRING;
