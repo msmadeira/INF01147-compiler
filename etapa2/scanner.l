@@ -57,8 +57,8 @@ SINGLE_LINE_COMMENT    "//".*
     "default" return TK_PR_DEFAULT;
 
         /* special characters */
-    "," { return get_ascii(','); };
-    ";" { return get_ascii(';'); };
+    "," return TK_ESPECIAL_COMMA;
+    ";" return TK_ESPECIAL_SEMICOLON;
     ":" { return get_ascii(':'); };
     "(" { return get_ascii('('); };
     ")" { return get_ascii(')'); };

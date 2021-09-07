@@ -47,14 +47,22 @@ int yyerror (char const *s);
 %token TK_LIT_CHAR
 %token TK_LIT_STRING
 %token TK_IDENTIFICADOR
+%token TK_ESPECIAL_SEMICOLON
+%token TK_ESPECIAL_COMMA
 %token TOKEN_ERRO
 %start programa
 
 %%
 
-programa : funcao | declaracao | /* vazio */;
-funcao : programa TK_PR_INT { printf("TODO int definido como placeholder"); };
-declaracao : programa TK_PR_FLOAT { printf("TODO float definido como placeholder"); };
+programa : funcao | declaracao_global | /* vazio */;
+funcao : programa "funcao" { printf("funcao \n"); };
+
+declaracao_global : programa static_opcional tipo nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
+nomes : TK_IDENTIFICADOR sequencia_nomes;
+sequencia_nomes : TK_ESPECIAL_COMMA TK_IDENTIFICADOR sequencia_nomes | /* vazio */;
+
+static_opcional : TK_PR_STATIC |  /* vazio */;
+tipo : TK_PR_INT | TK_PR_FLOAT | TK_PR_CHAR | TK_PR_BOOL | TK_PR_STRING { printf("tipo \n"); };
 
 %%
 
