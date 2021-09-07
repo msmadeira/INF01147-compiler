@@ -69,18 +69,19 @@ SINGLE_LINE_COMMENT    "//".*
     "{" return TK_ESPECIAL_OPCURLY;
     "}" return TK_ESPECIAL_CLCURLY;
     "!" return TK_ESPECIAL_EXCLAMATION;
+    "?" return TK_ESPECIAL_INTERROGATION;
     "+" return TK_ESPECIAL_ADD;
     "-" return TK_ESPECIAL_SUB;
     "*" return TK_ESPECIAL_MULT;
     "/" return TK_ESPECIAL_DIV;
     "<" return TK_ESPECIAL_LTHAN;
     ">" return TK_ESPECIAL_GTHAN;
-    "|" { return get_ascii('|'); };
-    "=" { return get_ascii('='); };
-    "&" { return get_ascii('&'); };
-    "%" { return get_ascii('%'); };
-    "#" { return get_ascii('#'); };
-    "^" { return get_ascii('^'); };
+    "|" return TK_ESPECIAL_BITOR;
+    "=" return TK_ESPECIAL_EQUALS;
+    "&" return TK_ESPECIAL_BITAND;
+    "%" return TK_ESPECIAL_REM;
+    "#" return TK_ESPECIAL_HASH;
+    "^" return TK_ESPECIAL_POW;
     "." { return get_ascii('.'); };
     "$" { return get_ascii('$'); };
 

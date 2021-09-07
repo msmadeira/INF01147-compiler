@@ -57,13 +57,20 @@ int yyerror (char const *s);
 %token TK_ESPECIAL_COMMA
 %token TK_ESPECIAL_SEMICOLON
 %token TK_ESPECIAL_COLON;
-%token TK_ESPECIAL_EXCLAMATION
+%token TK_ESPECIAL_EXCLAMATION;
+%token TK_ESPECIAL_INTERROGATION;
 %token TK_ESPECIAL_ADD;
 %token TK_ESPECIAL_SUB;
 %token TK_ESPECIAL_MULT;
 %token TK_ESPECIAL_DIV;
 %token TK_ESPECIAL_LTHAN;
 %token TK_ESPECIAL_GTHAN;
+%token TK_ESPECIAL_EQUALS;
+%token TK_ESPECIAL_REM; 
+%token TK_ESPECIAL_BITOR;
+%token TK_ESPECIAL_BITAND;
+%token TK_ESPECIAL_POW;
+%token TK_ESPECIAL_HASH;
 %token TOKEN_ERRO
 %start programa
 
@@ -84,7 +91,9 @@ bloco_comandos_corpo : bloco_comandos_corpo bloco_comandos_opcoes | /* vazio */;
 bloco_comandos_opcoes : declaracao_local
     | bloco_comandos
     | entrada
-    | saida;
+    | atribuicao
+    | saida
+    | chamada_funcao;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -98,7 +107,9 @@ declaracao_local_variavel : TK_IDENTIFICADOR declaracao_local_inicializacao;
 declaracao_local_inicializacao : TK_OC_LE valor | /* vazio */;
 
 entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
-saida: TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON; 
+saida: TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
+
+atribuicao : TK_IDENTIFICADOR TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
@@ -114,23 +125,36 @@ argumento : expressao;
 
 expressao : TK_IDENTIFICADOR 
     | TK_IDENTIFICADOR TK_ESPECIAL_OPBRACKETS expressao TK_ESPECIAL_CLBRACKETS
-    | TK_IDENTIFICADOR TK_ESPECIAL_OPPAR lista_parametros TK_ESPECIAL_CLPAR
+    | chamada_funcao
     | literal
-    | expressao TK_ESPECIAL_ADD expressao 
-    | expressao TK_ESPECIAL_SUB expressao 
-    | expressao TK_ESPECIAL_MULT expressao 
-    | expressao TK_ESPECIAL_DIV expressao
-    | expressao TK_ESPECIAL_LTHAN expressao
-    | expressao TK_ESPECIAL_GTHAN expressao 
-    | TK_ESPECIAL_EXCLAMATION TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR
-    | expressao TK_OC_LE expressao
-    | expressao TK_OC_GE expressao 
-    | expressao TK_OC_EQ expressao
-    | expressao TK_OC_NE expressao
-    | expressao TK_OC_AND expressao
-    | expressao TK_OC_OR expressao
+    | expressao_ternaria
+    | expressao_binaria 
+    | expressao_unaria
     | TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR
 ;
+expressao_binaria : expressao op_binarios expressao;
+op_binarios : TK_ESPECIAL_ADD 
+    | TK_ESPECIAL_SUB 
+    | TK_ESPECIAL_MULT 
+    | TK_ESPECIAL_DIV 
+    | TK_ESPECIAL_REM 
+    | TK_ESPECIAL_BITOR
+    | TK_ESPECIAL_BITAND
+    | TK_ESPECIAL_POW
+    | TK_OC_LE
+    | TK_OC_GE 
+    | TK_OC_EQ
+    | TK_OC_NE
+    | TK_OC_AND
+    | TK_OC_OR;
+expressao_unaria : TK_ESPECIAL_EXCLAMATION expressao
+    | expressao TK_ESPECIAL_INTERROGATION
+    | TK_ESPECIAL_ADD expressao
+    | TK_ESPECIAL_SUB expressao
+    | TK_ESPECIAL_BITAND TK_IDENTIFICADOR
+    | TK_ESPECIAL_MULT TK_IDENTIFICADOR
+    | TK_ESPECIAL_HASH TK_IDENTIFICADOR;
+expressao_ternaria : expressao TK_ESPECIAL_INTERROGATION expressao TK_ESPECIAL_COLON expressao;
 
 lista_parametros : parametro parametros_fim | /* vazio */;
 parametros_fim : TK_ESPECIAL_COMMA parametro parametros_fim | /* vazio */;
