@@ -71,15 +71,20 @@ int yyerror (char const *s);
 
 programa : funcao | declaracao_global | /* vazio */;
 
-funcao : programa funcao_cabecalho funcao_corpo { printf("funcao \n"); };
+funcao : programa funcao_cabecalho bloco_comandos_estrutura { printf("funcao \n"); };
 funcao_cabecalho : static_opcional tipo TK_IDENTIFICADOR TK_ESPECIAL_OPPAR funcao_parametros TK_ESPECIAL_CLPAR;
-funcao_corpo : TK_ESPECIAL_OPCURLY bloco_comandos TK_ESPECIAL_CLCURLY;
 funcao_parametros : funcao_parametro 
     | funcao_parametro TK_ESPECIAL_COMMA funcao_parametros 
     | /* vazio */;
 funcao_parametro : const_opcional tipo TK_IDENTIFICADOR;
 
-bloco_comandos : declaracao_local | /* vazio */;
+bloco_comandos : TK_ESPECIAL_OPCURLY bloco_comandos_corpo TK_ESPECIAL_CLCURLY TK_ESPECIAL_SEMICOLON;
+bloco_comandos_estrutura : TK_ESPECIAL_OPCURLY bloco_comandos_corpo TK_ESPECIAL_CLCURLY;
+bloco_comandos_corpo : bloco_comandos_corpo bloco_comandos_opcoes | /* vazio */;
+bloco_comandos_opcoes : declaracao_local
+    | bloco_comandos
+    | entrada
+    | saida;
 
 declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
@@ -90,14 +95,18 @@ declaracao_local : static_opcional const_opcional tipo declaracao_local_nomes TK
 declaracao_local_nomes : declaracao_local_variavel declaracao_local_sequencia_nomes;
 declaracao_local_sequencia_nomes : TK_ESPECIAL_COMMA declaracao_local_variavel declaracao_local_sequencia_nomes | /* vazio */;
 declaracao_local_variavel : TK_IDENTIFICADOR declaracao_local_inicializacao;
-declaracao_local_inicializacao : TK_OC_LE declaracao_local_valor | /* vazio */;
-declaracao_local_valor : TK_IDENTIFICADOR | literal;
+declaracao_local_inicializacao : TK_OC_LE valor | /* vazio */;
+
+entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
+saida: TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON; 
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
 tipo : TK_PR_INT | TK_PR_FLOAT | TK_PR_CHAR | TK_PR_BOOL | TK_PR_STRING;
 literal : TK_LIT_POSINT | TK_LIT_NEGINT | TK_LIT_FLOAT | TK_LIT_FALSE | TK_LIT_TRUE | TK_LIT_CHAR | TK_LIT_STRING;
 vetor : TK_ESPECIAL_OPBRACKETS TK_LIT_POSINT TK_ESPECIAL_CLBRACKETS | /* vazio */;
+
+valor : TK_IDENTIFICADOR | literal;
 
 chamada_funcao : TK_IDENTIFICADOR TK_ESPECIAL_OPPAR TK_ESPECIAL_CLPAR | TK_IDENTIFICADOR TK_ESPECIAL_OPPAR lista_argumentos TK_ESPECIAL_CLPAR;
 lista_argumentos : argumento | argumento TK_ESPECIAL_COMMA lista_argumentos;
