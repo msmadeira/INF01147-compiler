@@ -109,7 +109,8 @@ declaracao_local_inicializacao : TK_OC_LE valor | /* vazio */;
 entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
 saida: TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
 
-atribuicao : TK_IDENTIFICADOR TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
+atribuicao : TK_IDENTIFICADOR atribuicao_vetor TK_ESPECIAL_EQUALS expressao TK_ESPECIAL_SEMICOLON;
+atribuicao_vetor : TK_ESPECIAL_OPBRACKETS expressao TK_ESPECIAL_CLBRACKETS | /* vazio */;
 
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
