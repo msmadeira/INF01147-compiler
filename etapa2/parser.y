@@ -78,7 +78,7 @@ int yyerror (char const *s);
 
 programa : funcao | declaracao_global | /* vazio */;
 
-funcao : programa funcao_cabecalho bloco_comandos_estrutura { printf("funcao \n"); };
+funcao : programa funcao_cabecalho bloco_comandos_estrutura;
 funcao_cabecalho : static_opcional tipo TK_IDENTIFICADOR TK_ESPECIAL_OPPAR funcao_parametros TK_ESPECIAL_CLPAR;
 funcao_parametros : funcao_parametro 
     | funcao_parametro TK_ESPECIAL_COMMA funcao_parametros 
@@ -102,12 +102,12 @@ bloco_comandos_opcoes : declaracao_local
     | iterativa_for
     | iterativa_while;
 
-declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_global \n"); };
+declaracao_global : programa static_opcional tipo declaracao_global_nomes TK_ESPECIAL_SEMICOLON;
 declaracao_global_nomes : declaracao_global_nome_variavel declaracao_global_sequencia_nomes;
 declaracao_global_sequencia_nomes : TK_ESPECIAL_COMMA declaracao_global_nome_variavel declaracao_global_sequencia_nomes | /* vazio */;
 declaracao_global_nome_variavel : TK_IDENTIFICADOR vetor;
 
-declaracao_local : static_opcional const_opcional tipo declaracao_local_nomes TK_ESPECIAL_SEMICOLON { printf("declaracao_local \n"); };
+declaracao_local : static_opcional const_opcional tipo declaracao_local_nomes TK_ESPECIAL_SEMICOLON;
 declaracao_local_nomes : declaracao_local_variavel declaracao_local_sequencia_nomes;
 declaracao_local_sequencia_nomes : TK_ESPECIAL_COMMA declaracao_local_variavel declaracao_local_sequencia_nomes | /* vazio */;
 declaracao_local_variavel : TK_IDENTIFICADOR declaracao_local_inicializacao;
