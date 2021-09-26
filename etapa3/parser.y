@@ -1,9 +1,14 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include "types.h"
 int yylex(void);
 int yyerror (char const *s);
 %}
+
+%union{
+    valor_lexico_tipo* valor_lexico;
+}
 
 %token TK_PR_INT
 %token TK_PR_FLOAT
@@ -32,45 +37,45 @@ int yyerror (char const *s);
 %token TK_PR_PROTECTED
 %token TK_PR_END
 %token TK_PR_DEFAULT
-%token TK_OC_LE
-%token TK_OC_GE
-%token TK_OC_EQ
-%token TK_OC_NE
-%token TK_OC_AND
-%token TK_OC_OR
-%token TK_OC_SL
-%token TK_OC_SR
-%token TK_LIT_POSINT
-%token TK_LIT_NEGINT
-%token TK_LIT_FLOAT
-%token TK_LIT_FALSE
-%token TK_LIT_TRUE
-%token TK_LIT_CHAR
-%token TK_LIT_STRING
-%token TK_IDENTIFICADOR
-%token TK_ESPECIAL_OPPAR;
-%token TK_ESPECIAL_CLPAR;
-%token TK_ESPECIAL_OPBRACKETS
-%token TK_ESPECIAL_CLBRACKETS
-%token TK_ESPECIAL_OPCURLY
-%token TK_ESPECIAL_CLCURLY
-%token TK_ESPECIAL_COMMA
-%token TK_ESPECIAL_SEMICOLON
-%token TK_ESPECIAL_COLON;
-%token TK_ESPECIAL_EXCLAMATION;
-%token TK_ESPECIAL_INTERROGATION;
-%token TK_ESPECIAL_ADD;
-%token TK_ESPECIAL_SUB;
-%token TK_ESPECIAL_MULT;
-%token TK_ESPECIAL_DIV;
-%token TK_ESPECIAL_LTHAN;
-%token TK_ESPECIAL_GTHAN;
-%token TK_ESPECIAL_EQUALS;
-%token TK_ESPECIAL_REM; 
-%token TK_ESPECIAL_BITOR;
-%token TK_ESPECIAL_BITAND;
-%token TK_ESPECIAL_POW;
-%token TK_ESPECIAL_HASH;
+%token<valor_lexico> TK_OC_LE
+%token<valor_lexico> TK_OC_GE
+%token<valor_lexico> TK_OC_EQ
+%token<valor_lexico> TK_OC_NE
+%token<valor_lexico> TK_OC_AND
+%token<valor_lexico> TK_OC_OR
+%token<valor_lexico> TK_OC_SL
+%token<valor_lexico> TK_OC_SR
+%token<valor_lexico> TK_LIT_POSINT
+%token<valor_lexico> TK_LIT_NEGINT
+%token<valor_lexico> TK_LIT_FLOAT
+%token<valor_lexico> TK_LIT_FALSE
+%token<valor_lexico> TK_LIT_TRUE
+%token<valor_lexico> TK_LIT_CHAR
+%token<valor_lexico> TK_LIT_STRING
+%token<valor_lexico> TK_IDENTIFICADOR
+%token<valor_lexico> TK_ESPECIAL_OPPAR;
+%token<valor_lexico> TK_ESPECIAL_CLPAR;
+%token<valor_lexico> TK_ESPECIAL_OPBRACKETS
+%token<valor_lexico> TK_ESPECIAL_CLBRACKETS
+%token<valor_lexico> TK_ESPECIAL_OPCURLY
+%token<valor_lexico> TK_ESPECIAL_CLCURLY
+%token<valor_lexico> TK_ESPECIAL_COMMA
+%token<valor_lexico> TK_ESPECIAL_SEMICOLON
+%token<valor_lexico> TK_ESPECIAL_COLON;
+%token<valor_lexico> TK_ESPECIAL_EXCLAMATION;
+%token<valor_lexico> TK_ESPECIAL_INTERROGATION;
+%token<valor_lexico> TK_ESPECIAL_ADD;
+%token<valor_lexico> TK_ESPECIAL_SUB;
+%token<valor_lexico> TK_ESPECIAL_MULT;
+%token<valor_lexico> TK_ESPECIAL_DIV;
+%token<valor_lexico> TK_ESPECIAL_LTHAN;
+%token<valor_lexico> TK_ESPECIAL_GTHAN;
+%token<valor_lexico> TK_ESPECIAL_EQUALS;
+%token<valor_lexico> TK_ESPECIAL_REM; 
+%token<valor_lexico> TK_ESPECIAL_BITOR;
+%token<valor_lexico> TK_ESPECIAL_BITAND;
+%token<valor_lexico> TK_ESPECIAL_POW;
+%token<valor_lexico> TK_ESPECIAL_HASH;
 %token TOKEN_ERRO
 %start programa
 
@@ -117,7 +122,7 @@ entrada : TK_PR_INPUT TK_IDENTIFICADOR TK_ESPECIAL_SEMICOLON;
 saida : TK_PR_OUTPUT valor TK_ESPECIAL_SEMICOLON;
 
 atribuicao : atribuicao_corpo TK_ESPECIAL_SEMICOLON;
-atribuicao_corpo : TK_IDENTIFICADOR vetor_expressao TK_ESPECIAL_EQUALS expressao; 
+atribuicao_corpo : TK_IDENTIFICADOR vetor_expressao TK_ESPECIAL_EQUALS literal; 
 
 operacao_shift : TK_IDENTIFICADOR vetor_expressao operadores_shift inteiro TK_ESPECIAL_SEMICOLON;
 operadores_shift : TK_OC_SL | TK_OC_SR;
@@ -137,7 +142,13 @@ iterativa_while : TK_PR_WHILE TK_ESPECIAL_OPPAR expressao TK_ESPECIAL_CLPAR TK_P
 const_opcional : TK_PR_CONST |  /* vazio */;
 static_opcional : TK_PR_STATIC |  /* vazio */;
 tipo : TK_PR_INT | TK_PR_FLOAT | TK_PR_CHAR | TK_PR_BOOL | TK_PR_STRING;
-literal : TK_LIT_POSINT | TK_LIT_NEGINT | TK_LIT_FLOAT | TK_LIT_FALSE | TK_LIT_TRUE | TK_LIT_CHAR | TK_LIT_STRING;
+literal : TK_LIT_POSINT 
+    | TK_LIT_NEGINT 
+    | TK_LIT_FLOAT 
+    | TK_LIT_FALSE 
+    | TK_LIT_TRUE
+    | TK_LIT_CHAR 
+    | TK_LIT_STRING;
 vetor : TK_ESPECIAL_OPBRACKETS TK_LIT_POSINT TK_ESPECIAL_CLBRACKETS | /* vazio */;
 vetor_expressao : TK_ESPECIAL_OPBRACKETS expressao TK_ESPECIAL_CLBRACKETS | /* vazio */;
 inteiro : TK_LIT_POSINT | TK_LIT_NEGINT;
