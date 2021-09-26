@@ -36,14 +36,7 @@
 "else" return TK_PR_ELSE;
 "while" return TK_PR_WHILE;
 "do" return TK_PR_DO;
-"if" return KW_IF;
-"then" return KW_THEN;
-"else" return KW_ELSE;
-"while" return KW_WHILE;
-"loop" return KW_LOOP;
-"read" return KW_READ;
-"print" return KW_PRINT;
-"return" return KW_RETURN;
+"return" return TK_PR_RETURN;
 "<=" return TK_OC_LE;
 ">=" return TK_OC_GE;
 "==" return TK_OC_EQ;
