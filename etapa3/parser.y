@@ -7,7 +7,8 @@ int yyerror (char const *s);
 %}
 
 %union{
-    valor_lexico_tipo* valor_lexico;
+    HASH_NODE *symbol;
+    AST *ast;
 }
 
 %token TK_PR_INT
@@ -37,47 +38,81 @@ int yyerror (char const *s);
 %token TK_PR_PROTECTED
 %token TK_PR_END
 %token TK_PR_DEFAULT
-%token<valor_lexico> TK_OC_LE
-%token<valor_lexico> TK_OC_GE
-%token<valor_lexico> TK_OC_EQ
-%token<valor_lexico> TK_OC_NE
-%token<valor_lexico> TK_OC_AND
-%token<valor_lexico> TK_OC_OR
-%token<valor_lexico> TK_OC_SL
-%token<valor_lexico> TK_OC_SR
-%token<valor_lexico> TK_LIT_POSINT
-%token<valor_lexico> TK_LIT_NEGINT
-%token<valor_lexico> TK_LIT_FLOAT
-%token<valor_lexico> TK_LIT_FALSE
-%token<valor_lexico> TK_LIT_TRUE
-%token<valor_lexico> TK_LIT_CHAR
-%token<valor_lexico> TK_LIT_STRING
-%token<valor_lexico> TK_IDENTIFICADOR
-%token<valor_lexico> TK_ESPECIAL_OPPAR;
-%token<valor_lexico> TK_ESPECIAL_CLPAR;
-%token<valor_lexico> TK_ESPECIAL_OPBRACKETS
-%token<valor_lexico> TK_ESPECIAL_CLBRACKETS
-%token<valor_lexico> TK_ESPECIAL_OPCURLY
-%token<valor_lexico> TK_ESPECIAL_CLCURLY
-%token<valor_lexico> TK_ESPECIAL_COMMA
-%token<valor_lexico> TK_ESPECIAL_SEMICOLON
-%token<valor_lexico> TK_ESPECIAL_COLON;
-%token<valor_lexico> TK_ESPECIAL_EXCLAMATION;
-%token<valor_lexico> TK_ESPECIAL_INTERROGATION;
-%token<valor_lexico> TK_ESPECIAL_ADD;
-%token<valor_lexico> TK_ESPECIAL_SUB;
-%token<valor_lexico> TK_ESPECIAL_MULT;
-%token<valor_lexico> TK_ESPECIAL_DIV;
-%token<valor_lexico> TK_ESPECIAL_LTHAN;
-%token<valor_lexico> TK_ESPECIAL_GTHAN;
-%token<valor_lexico> TK_ESPECIAL_EQUALS;
-%token<valor_lexico> TK_ESPECIAL_REM; 
-%token<valor_lexico> TK_ESPECIAL_BITOR;
-%token<valor_lexico> TK_ESPECIAL_BITAND;
-%token<valor_lexico> TK_ESPECIAL_POW;
-%token<valor_lexico> TK_ESPECIAL_HASH;
+
+%token <symbol> TK_IDENTIFICADOR
+%token <symbol> TK_LIT_POSINT
+%token <symbol> TK_LIT_NEGINT
+%token <symbol> TK_LIT_FLOAT
+%token <symbol> TK_LIT_FALSE
+%token <symbol> TK_LIT_TRUE
+%token <symbol> TK_LIT_CHAR
+%token <symbol> TK_LIT_STRING
+
 %token TOKEN_ERRO
-%start programa
+
+%token TK_OC_LE
+%token TK_OC_GE
+%token TK_OC_EQ
+%token TK_OC_NE
+%token TK_OC_AND
+%token TK_OC_OR
+%token TK_OC_SL
+%token TK_OC_SR
+%type<ast> programa
+%type<ast> funcao
+%type<ast> funcao_cabecalho
+%type<ast> funcao_parametros
+%type<ast> funcao_parametro
+%type<ast> bloco_comandos
+%type<ast> bloco_comandos_estrutura
+%type<ast> bloco_comandos_corpo
+%type<ast> bloco_comandos_opcoes
+%type<ast> declaracao_global
+%type<ast> declaracao_global_nomes
+%type<ast> declaracao_global_sequencia_nomes
+%type<ast> declaracao_global_nome_variavel
+%type<ast> declaracao_local
+%type<ast> declaracao_local_nomes
+%type<ast> declaracao_local_sequencia_nomes
+%type<ast> declaracao_local_variavel
+%type<ast> declaracao_local_inicializacao
+%type<ast> entrada
+%type<ast> saida
+%type<ast> atribuicao
+%type<ast> atribuicao_corpo
+%type<ast> operacao_shift
+%type<ast> operadores_shift
+%type<ast> retorno
+%type<ast> operacao_break
+%type<ast> operacao_continue
+%type<ast> condicional_if
+%type<ast> condional_else
+%type<ast> iterativa_for
+%type<ast> iterativa_for_cabecalho
+%type<ast> iterativa_while
+%type<ast> const_opcional
+%type<ast> static_opcional
+%type<ast> tipo
+%type<ast> literal
+%type<ast> vetor
+%type<ast> vetor_expressao
+%type<ast> inteiro
+%type<ast> valor
+%type<ast> chamada_funcao
+%type<ast> lista_argumentos
+%type<ast> argumento
+%type<ast> expressao
+%type<ast> expressao_binaria
+%type<ast> op_binarios
+%type<ast> expressao_unaria
+%type<ast> expressao_ternaria
+
+ %left '|' '^' 
+ %left '<' '>' OPERATOR_LE OPERATOR_GE OPERATOR_EQ OPERATOR_DIF 
+ %left '+' '-'  
+ %left '*' '/'
+ %left '~'
+
 
 %%
 
